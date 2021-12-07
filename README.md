@@ -1,55 +1,11 @@
-DevByte - Starter Code
+Implementace Repository Pattern
 ======================
-
-Use as starter code for the Repository codelab.
-
-Introduction
-------------
-
-DevByteViewer app displays a list of DevByte videos. DevByte videos are short
-videos made by the Google Android developer relations team to introduce new
-developer features on Android. They're also a great way to stay up to date with
-new features as they come out as well as tips and best practices. This app
-fetches the DevByte video list from the network using the Retrofit library and
-displays it on the screen. It uses a ViewModel and LiveData to hold the data and
-update the UI. Since the video list is big, results are displayed in a
-RecyclerView.
-
-
-Pre-requisites
---------------
-
-You need to know:
-- How to open, build, and run Android apps with Android Studio.
-- How to use the Navigation Architecture Component
-- Passing the data between navigation destinations.
-- Read the logs using the Logcat.
-- Android architecture components: ViewModel and LiveData.
-- How to use Retrofit network library.
-
-
-Getting Started
----------------
-
-1. Download and run the app.
-2. You need Android Studio 3.2 or higher to build this project.
-
-License
--------
-
-Copyright 2019 Google, Inc.
-
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
-the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-License for the specific language governing permissions and limitations under
-the License.
+* podstatou cvičení je implementace aplikace dle tutoriálu: https://developer.android.com/codelabs/kotlin-android-training-repository/#0 
+* Architektura aplikace využívá třídu Repository, skrze kterou získává ViewModel data
+* Repository může získávat data buď z SQLite (Room) nebo ze sítě (Retrofit)
+  * V aplikaci jsou datové entity reprezentovány následujícími třídami:
+  * datová entita načtená ze sítě je označena jako tzv. NetworkModel
+  * datová entita získaná z SQLite databáze je označena jako tzv. DatabaseModel
+  * datová entita se kterou reálně pracuje mobilní aplikace a je výstupem z Repository je označena jako tzv. DomainModel
+  * výše uvedená architektura umožňuje jednoduché mapování vlastností datových entit získaných ze sítě na datové entity databázové a dále využívané přímo v mobilní aplikaci
+  * aby byla zajištěna dostupnost dat i v případě offline, ViewModel pracuje s doménovým modelem, který je vždy naplněn z databáze... je-li dostupná komunikace se sítí, je databázový model aktualizován síťovým modelem
